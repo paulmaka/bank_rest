@@ -6,3 +6,6 @@
 ```
 docker compose up --build -d
 ```
+
+## Swagger
+UI Swagger доступен по http://localhost:4000/swagger-ui/index.html
