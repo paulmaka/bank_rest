@@ -1,0 +1,4 @@
+### Delete card
+DELETE http://localhost:4000/cards/e0e22bc4-4cd1-489f-938c-6f8c5822fafb
+Authorization: Bearer {{token}}
+###

@@ -1,0 +1,9 @@
+### Update card
+PUT http://localhost:4000/cards/851978ed-a3ef-4c95-b08e-853d04017262
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "expirationDate": "12/35"
+}
+###

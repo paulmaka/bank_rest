@@ -1,0 +1,9 @@
+### Create blocking request
+POST http://localhost:4000/client/blocking-requests
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "cardNumber": "2222 2222 3333 4444"
+}
+###

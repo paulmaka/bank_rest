@@ -1,0 +1,4 @@
+### Get all user cards
+GET http://localhost:4000/client/cards
+Authorization: Bearer {{token}}
+###

@@ -1,0 +1,4 @@
+### Get user balance
+GET http://localhost:4000/client/balance
+Authorization: Bearer {{token}}
+###

@@ -1,0 +1,11 @@
+### Create new card
+POST http://localhost:4000/cards
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "cardNumber": "2222 2222 3333 4444",
+  "ownerId": "717fbbef-f3a7-46b9-ac75-be2f7afa57e8",
+  "expirationDate": "10/32"
+}
+###

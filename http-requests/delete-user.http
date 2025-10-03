@@ -1,0 +1,4 @@
+### Delete user
+DELETE http://localhost:4000/users/222c0026-95eb-4056-8fab-33dba2bab529
+Authorization: Bearer {{token}}
+###
