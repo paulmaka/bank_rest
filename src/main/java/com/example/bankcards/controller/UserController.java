@@ -5,6 +5,8 @@ import com.example.bankcards.dto.UserRequestDTO;
 import com.example.bankcards.dto.UserResponseDTO;
 import com.example.bankcards.dto.validators.CreateUserValidationGroup;
 import com.example.bankcards.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.groups.Default;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+@Tag(name = "Управление пользователями, доступное администратору")
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -27,6 +30,7 @@ public class UserController {
     /*
     Созданием нового пользователя банка занимается ADMIN
      */
+    @Operation(summary = "Создание нового пользователя")
     @PostMapping
     public ResponseEntity<UserResponseDTO> createNewUser(
             @Validated({CreateUserValidationGroup.class})
@@ -36,6 +40,7 @@ public class UserController {
         return ResponseEntity.ok(userResponseDTO);
     }
 
+    @Operation(summary = "Обновление информации о пользователе")
     @PutMapping("/{id}")
     public ResponseEntity<UserResponseDTO> updateUser(
             @Validated({Default.class})
@@ -47,6 +52,7 @@ public class UserController {
         return ResponseEntity.ok(userResponseDTO);
     }
 
+    @Operation(summary = "Удаление пользователя")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable String id) {
         UUID uuid = UUID.fromString(id);

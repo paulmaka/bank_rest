@@ -25,7 +25,7 @@ insert into roles (id, role)
 SELECT'1', 'ROLE_USER'
     WHERE NOT EXISTS (
     SELECT 1
-    FROM "roles"
+    FROM roles
     WHERE role = 'ROLE_USER' AND id = '1'
 );
 
@@ -33,6 +33,16 @@ insert into roles (id, role)
 SELECT '2','ROLE_ADMIN'
     WHERE NOT EXISTS (
     SELECT 1
-    FROM "roles"
+    FROM roles
     WHERE role = 'ROLE_ADMIN' AND id = '2'
+);
+
+INSERT INTO users (id, username, passport, password, email)
+SELECT 'e35a3008-462d-45b6-9245-47c86e672111', 'admin2',
+       '0000000000', '$2a$10$6zKo9mTACOLoCl9R9O6JEOOosa7BF3ICAeEUm7EKYyfGVXHbvKUBa',
+       'admin2@example.com'
+WHERE NOT EXISTS(
+    SELECT 1
+    FROM users
+    WHERE passport = '0000000000' OR id = 'e35a3008-462d-45b6-9245-47c86e672111' OR email = 'admin2@example.com'
 );

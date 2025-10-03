@@ -1,0 +1,52 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-blocking-requests-table
+      author: Pavel Makarenko
+      changes:
+        - createTable:
+            tableName: blocking_requests
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+              - column:
+                  name: card_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: blocking_requests
+            baseColumnNames: user_id
+            referencedTableName: users
+            referencedColumnNames: id
+            onDelete: CASCADE
+            onUpdate: RESTRICT
+            constraintName: fk_blocking_requests_user
+        - addForeignKeyConstraint:
+            baseTableName: blocking_requests
+            baseColumnNames: card_id
+            referencedTableName: cards
+            referencedColumnNames: id
+            onDelete: CASCADE
+            onUpdate: RESTRICT
+            constraintName: fk_blocking_requests_card
+        - createIndex:
+            tableName: blocking_requests
+            indexName: ix_blocking_requests_user
+            columns:
+              - column:
+                  name: user_id
+        - createIndex:
+            tableName: blocking_requests
+            indexName: ix_blocking_requests_card
+            columns:
+              - column:
+                  name: card_id

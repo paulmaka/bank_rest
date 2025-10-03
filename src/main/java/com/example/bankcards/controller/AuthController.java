@@ -2,27 +2,27 @@ package com.example.bankcards.controller;
 
 import com.example.bankcards.dto.*;
 import com.example.bankcards.service.AuthService;
-import com.example.bankcards.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
+@Tag(name = "Аутентификация пользователя")
 @RestController
 public class AuthController {
 
     private final AuthService authService;
-    private final AuthenticationManager authenticationManager;
 
     @Autowired
-    public AuthController(AuthService authService, AuthenticationManager authenticationManager) {
+    public AuthController(AuthService authService) {
         this.authService = authService;
-        this.authenticationManager = authenticationManager;
     }
 
+    @Operation(summary = "Проводит аутентификацию пользователя и возвращает JWT " +
+            "токен при успешном выполнении")
     @PostMapping("/auth")
     public ResponseEntity<JwtResponseDTO> createAuthToken(@RequestBody JwtRequestDTO jwtRequestDTO){
         String token = authService.authenticate(jwtRequestDTO);

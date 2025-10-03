@@ -10,6 +10,7 @@ import com.example.bankcards.exception.EmailNotFoundException;
 import com.example.bankcards.repository.UserRepository;
 import com.example.bankcards.util.UserMapper;
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,6 +22,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Slf4j
 @Service
 public class UserService implements UserDetailsService {
 
@@ -69,6 +71,8 @@ public class UserService implements UserDetailsService {
 
     public UserResponseDTO updateUser(UUID id, UserRequestDTO userRequestDTO) {
         User user = userRepository.findById(id).orElseThrow(() -> new ClientNotFoundException("Пользователь с таким id не найден: " + id));
+
+        user = UserMapper.toUpdatedUser(user, userRequestDTO);
 
         if (userRequestDTO.getPassport() != null) {
             user.setEmail(passwordEncoder.encode(userRequestDTO.getPassword()));

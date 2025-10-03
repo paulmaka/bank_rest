@@ -4,7 +4,7 @@ package com.example.bankcards.dto;
 import com.example.bankcards.dto.validators.CreateUserValidationGroup;
 import jakarta.validation.constraints.NotBlank;
 
-//TODO сделать валидацию и сделать отдельное DTO для update, то же самое для Card
+
 public class UserRequestDTO {
 
     @NotBlank(groups = CreateUserValidationGroup.class, message = "Имя пользователя не должно быть пустым.")

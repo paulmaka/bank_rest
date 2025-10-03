@@ -1,0 +1,1 @@
+Endpoint для документации, сразу в UI Swagger-а: http://localhost:4000/swagger-ui/index.html

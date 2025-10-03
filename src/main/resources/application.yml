@@ -1,23 +1,23 @@
-#Что нужно сделать:
-#  - Настроить параметры безопасности и JWT.
-#  - Включить Swagger UI.
 server:
   port: 4000
 jwt:
   secret: 9faf4dc6c8b1f514680d7e3454dae9a5bbbaeadf195bd43613cf06b1f2e9c077447f40f6748532b5b8cbd469d03bfac11144bfb9f8fb54af2a3a7f8b5fa74524
   lifetime: 3h
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5000/db
-    password: password
-    username: admin
+#  Передаётся в docker-compose, так же лучше поступить и с параметрами JWT
+#  datasource:
+#    url: jdbc:postgresql://bank-rest-db:5432/db
+#    password: password
+#    username: admin
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     properties:
       hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
   sql:
     init:
-      mode: always
+      mode: never
+  liquibase:
+    enabled: false
 
 
